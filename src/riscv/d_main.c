@@ -633,3 +633,12 @@ void D_DoomMain (void)
 
     D_DoomLoop ();  // never returns
 }
+
+int _open()
+{
+    return 0;
+}
+int _stat()
+{
+    return 0;
+}

@@ -32,11 +32,12 @@
 #ifdef __cplusplus
 typedef bool boolean;
 #else
-typedef enum {false, true} boolean;
+typedef enum {_false, _true} boolean;
+#define false _false
+#define true _true
 #endif
 typedef unsigned char byte;
 #endif
-
 
 // Limits alias
 #include <limits.h>
