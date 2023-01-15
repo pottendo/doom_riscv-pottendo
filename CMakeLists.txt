@@ -2,13 +2,15 @@
 
 cmake_minimum_required(VERSION 3.20.0)
 
+set(DTC_OVERLAY_FILE "doom.overlay")
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(c)
 zephyr_compile_definitions(ZEPHYR=1 NORMALUNIX=1)
 include_directories(src)
 
-
-#  src/riscv/libc_backend.c  
+# src/riscv/libc_backend.c  
+# src/riscv/console.c  
+# src/riscv/c64-lib.cpp
 target_sources(app PRIVATE
   src/riscv/d_main.c 
   src/riscv/i_main.c 
@@ -17,7 +19,7 @@ target_sources(app PRIVATE
   src/riscv/i_system.c 
   src/riscv/i_video.c 
   src/riscv/s_sound.c 
-  src/riscv/console.c  
+  src/riscv/d_zephyr.c  
   src/riscv/mini-printf.c
   src/am_map.c 
   src/d_items.c 

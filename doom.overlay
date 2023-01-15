@@ -1,0 +1,13 @@
+/ { 
+    reserved-memory {
+    #address-cells = <1>;
+    #size-cells    = <1>;
+    ranges;
+
+    doom1@40500000 {
+        reg = <0x40500000 0x500000>;
+    };
+
+    };
+};
+
