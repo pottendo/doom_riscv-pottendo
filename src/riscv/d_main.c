@@ -350,28 +350,37 @@ void D_DoomLoop (void)
 
     while (1)
     {
+printf("%s: 1\n", __FUNCTION__);
         // frame syncronous IO operations
         I_StartFrame ();
 
+printf("%s: 2\n", __FUNCTION__);
         // process one or more tics
         if (singletics)
         {
             I_StartTic ();
+printf("%s: 3\n", __FUNCTION__);
             D_ProcessEvents ();
+printf("%s: 4\n", __FUNCTION__);
             G_BuildTiccmd (&netcmds[consoleplayer][maketic%BACKUPTICS]);
+printf("%s: 5\n", __FUNCTION__);
             if (advancedemo)
                 D_DoAdvanceDemo ();
+printf("%s: 6\n", __FUNCTION__);
             M_Ticker ();
+printf("%s: 7\n", __FUNCTION__);
             G_Ticker ();
             gametic++;
             maketic++;
         }
         else
         {
+printf("%s: 8\n", __FUNCTION__);
             TryRunTics (); // will run at least one tic
         }
 
         // Update display, next frame, with current state.
+printf("%s: 9\n", __FUNCTION__);
         D_Display ();
     }
 }
@@ -542,15 +551,15 @@ void IdentifyVersion (void)
 #elif 0
     gamemode = commercial;
     D_AddFile ("tnt.wad");
-#elif 1
+#elif 0
     gamemode = retail;
     D_AddFile ("doomu.wad");
 #elif 0
     gamemode = registered;
     D_AddFile ("doom.wad");
-#elif 0
+#elif 1
     gamemode = shareware;
-    D_AddFile ("doom1.wad");
+    D_AddFile ("/SD:/doom1.wad");
 #else
     printf("Game mode indeterminate.\n");
     gamemode = indetermined;

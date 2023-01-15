@@ -22,6 +22,10 @@
 
 int main(void)
 {
+#ifdef __ZEPHYR__
+	init_zephyr(D_DoomMain);
+#else
 	D_DoomMain();
+#endif
 	return 0;
 }

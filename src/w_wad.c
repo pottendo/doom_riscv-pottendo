@@ -162,7 +162,7 @@ void W_AddFile (char *filename)
         reloadlump = numlumps;
     }
 
-    if ( (handle = open (filename,O_RDONLY | O_BINARY)) == -1)
+    if ( (handle = open (filename, O_RDONLY | O_BINARY)) == -1)
     {
         printf (" couldn't open %s\n",filename);
         return;
@@ -200,11 +200,15 @@ void W_AddFile (char *filename)
         length = header.numlumps*sizeof(filelump_t);
         fileinfo = alloca (length);
         lseek (handle, header.infotableofs, SEEK_SET);
-        read (handle, fileinfo, length);
+        if (read (handle, fileinfo, length) < 0)
+            perror("read\n");
         numlumps += header.numlumps;
     }
 
-
+#if 0
+    printf("numlumps = %d\n", numlumps);
+    hexdump(fileinfo, length);
+#endif
     // Fill in lumpinfo
     lumpinfo = realloc (lumpinfo, numlumps*sizeof(lumpinfo_t));
 
@@ -222,9 +226,10 @@ void W_AddFile (char *filename)
         lump_p->size = LONG(fileinfo->size);
         strncpy (lump_p->name, fileinfo->name, 8);
     }
-
+    
     if (reloadname)
         close (handle);
+
 }
 
 
@@ -454,7 +459,6 @@ W_ReadLump
     }
     else
         handle = l->handle;
-
     lseek (handle, l->position, SEEK_SET);
     c = read (handle, dest, l->size);
 

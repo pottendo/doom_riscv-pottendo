@@ -26,6 +26,7 @@
 void
 I_InitNetwork (void)
 {
+printf("%s: 1\n", __FUNCTION__);
 	// Base init
 	doomcom = calloc(1, sizeof(*doomcom));
 	doomcom->ticdup = 1;
@@ -42,5 +43,6 @@ I_InitNetwork (void)
 void
 I_NetCmd (void)
 {
+printf("%s: 1\n", __FUNCTION__);
 	/* No network ... */
 }

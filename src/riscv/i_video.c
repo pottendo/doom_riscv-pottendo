@@ -63,11 +63,13 @@ I_SetPalette(byte* palette)
 void
 I_UpdateNoBlit(void)
 {
+printf("%s: 1\n", __FUNCTION__);
 }
 
 void
 I_FinishUpdate (void)
 {
+printf("%s: 1\n", __FUNCTION__);
 	/* Copy from RAM buffer to frame buffer */
 	memcpy(
 		(void*)VID_FB_BASE,
