@@ -485,7 +485,7 @@ void V_Init (void)
     byte*       base;
 
     // stick these in low dos memory on PCs
-
+    printf("%s: allocating mem for screens: %d\n", __FUNCTION__, SCREENWIDTH*SCREENHEIGHT*4);
     base = I_AllocLow (SCREENWIDTH*SCREENHEIGHT*4);
 
     for (i=0 ; i<4 ; i++)
